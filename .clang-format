@@ -20,7 +20,7 @@ AlwaysBreakTemplateDeclarations: MultiLine
 BreakBeforeBraces: Custom
 BraceWrapping:
   AfterCaseLabel: true
-  AfterClass: true
+  AfterClass: false
   AfterControlStatement: Never
   AfterEnum: true
   AfterFunction: true

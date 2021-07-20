@@ -1,11 +1,19 @@
+#ifndef Y86_64_HEADERS_HPP
+#define Y86_64_HEADERS_HPP
+
+#if defined(_MSC_VER) && (_MSC_VER >= 1200)
 #pragma once
+#endif  // defined(_MSC_VER) && (_MSC_VER >= 1200)
 
 #include <algorithm>
 #include <array>
+#include <cassert>
 #include <cmath>
+#include <format>
 #include <fstream>
 #include <functional>
 #include <iostream>
+#include <iterator>
 #include <map>
 #include <memory>
 #include <numbers>
@@ -47,11 +55,11 @@
     #define DP_FINAL
 #else
     #define DP_FINAL final
-#endif  //
+#endif
 
-// If the function can be excuting return true, otherwise return false
+// If the function can be executing return true, otherwise return false
 template <typename Func, typename... ArgsType>
-bool function_excute_test(Func&& func, ArgsType&&... args)
+bool function_execute_test(Func&& func, ArgsType&&... args)
 {
     try {
         std::invoke(std::forward<Func>(func), std::forward<ArgsType>(args)...);
@@ -62,3 +70,5 @@ bool function_excute_test(Func&& func, ArgsType&&... args)
         return false;
     }
 }
+
+#endif  //Y86_64_HEADERS_HPP
