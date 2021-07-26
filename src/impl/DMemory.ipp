@@ -22,6 +22,7 @@ uint8_t& Y86DMemory<DMemorySize>::operator[](std::size_t index)
 template <uint64_t DMemorySize>
 void Y86DMemory<DMemorySize>::show(std::size_t beginAddress, std::size_t num)
 {
+    if (beginAddress >= DMemSize) return;
     if (beginAddress + num >= DMemSize) num = DMemSize - beginAddress;
 
     std::cout << std::format("Memory in (0x{:08x}, 0x{:08x})\n", beginAddress, beginAddress + num);

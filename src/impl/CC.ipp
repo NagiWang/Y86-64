@@ -46,4 +46,40 @@ Y86CCTag::operator bool() const
     return m_value;
 }
 
+//***************************** Y86ConditionCodes ********************************
+
+template <typename CCTagType>
+const Y86CCTag& Y86ConditionCodes<CCTagType>::get() const
+{
+    return m_cc;
+}
+
+template <typename CCTagType>
+typename Y86ConditionCodes<CCTagType>::CCTag& Y86ConditionCodes<CCTagType>::get()
+{
+    return const_cast<CCTag&>(static_cast<const Y86ConditionCodes*>(this)->get());
+}
+
+template <typename CCTagType>
+void Y86ConditionCodes<CCTagType>::set(const CCTag& cc_tag)
+{
+    m_cc |= cc_tag;
+}
+
+template <typename CCTagType>
+void Y86ConditionCodes<CCTagType>::clear(const CCTag& cc_tag)
+{
+    m_cc &= ~cc_tag;
+}
+
+template <typename CCTagType>
+void Y86ConditionCodes<CCTagType>::show() const
+{
+    std::cout << "Condition Code:\n"
+              << std::format("ZF {:01b}\tSF {:01b}\tOF {:01b}\n\n",
+                             static_cast<bool>(m_cc & ZF<CCTag>),
+                             static_cast<bool>(m_cc & SF<CCTag>),
+                             static_cast<bool>(m_cc & OF<CCTag>));
+}
+
 #endif  //Y86_64_CC_IPP

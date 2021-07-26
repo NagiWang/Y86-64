@@ -6,10 +6,10 @@ int main()
     Y86Registers<>::execute().show();
 
     Y86ConditionCodes<>::execute().show();
-    Y86ConditionCodes<>::execute().set(ZF | OF);
+    Y86ConditionCodes<>::execute().set(ZF<> | OF<>);
     Y86ConditionCodes<>::execute().show();
 
-    Y86ConditionCodes<>::execute().clear(ZF | SF);
+    Y86ConditionCodes<>::execute().clear(ZF<> | SF<>);
     Y86ConditionCodes<>::execute().show();
 
     Y86ConditionCodes<>::execute().clear();

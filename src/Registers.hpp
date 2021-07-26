@@ -5,8 +5,8 @@
 #pragma once
 #endif  // defined(_MSC_VER) && (_MSC_VER >= 1200)
 
-#include "headers.hpp"
 #include "CC.hpp"
+#include "headers.hpp"
 
 //* Y86Registers Tag
 enum class Y86RFTag
@@ -18,7 +18,6 @@ enum class Y86RFTag
     R12,    R13,    R14
     // clang-format on
 };
-
 
 template <typename RFTagType = Y86RFTag>
 struct Y86Registers {
@@ -47,36 +46,7 @@ protected:
     constexpr Y86Registers() = default;
 
 private:
-    std::array<uint64_t, 15> m_registers;
-};
-
-template <typename CCTagType = Y86CCTag>
-struct Y86ConditionCodes {
-    using CCTag = CCTagType;
-    // clang-format off
-    constexpr Y86ConditionCodes(const Y86ConditionCodes&)            = delete;
-    constexpr Y86ConditionCodes(Y86ConditionCodes&&)                 = delete;
-    constexpr Y86ConditionCodes& operator=(const Y86ConditionCodes&) = delete;
-    constexpr Y86ConditionCodes& operator=(Y86ConditionCodes&&)      = delete;
-    // clang-format on
-
-    static Y86ConditionCodes& execute()
-    {
-        static std::unique_ptr<Y86ConditionCodes> cc{new Y86ConditionCodes()};
-        return *cc;
-    }
-
-    [[nodiscard]] const Y86CCTag& get() const;
-    CCTag& get();
-    void set(const CCTag& cc_tag);
-    void clear(const CCTag& cc_tag = (ZF | SF | OF));
-    void show() const;
-
-protected:
-    constexpr Y86ConditionCodes() = default;
-
-private:
-    CCTag m_cc;
+    std::array<uint64_t, 15> m_regs;
 };
 
 #include "impl/Registers.ipp"

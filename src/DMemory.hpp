@@ -7,9 +7,9 @@
 
 #include "headers.hpp"
 
-template <uint64_t DMemorySize = 0x10000>
+template <std::size_t DMemorySize = 0x10000>
 struct Y86DMemory {
-    static constexpr uint64_t DMemSize = DMemorySize;
+    static constexpr std::size_t DMemSize = DMemorySize;
     // clang-format off
     constexpr Y86DMemory(const Y86DMemory&)            = delete;
     constexpr Y86DMemory(Y86DMemory&&)                 = delete;
