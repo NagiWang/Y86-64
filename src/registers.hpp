@@ -1,21 +1,31 @@
-#ifndef Y86_64_REGISTERS_HPP
+﻿#ifndef Y86_64_REGISTERS_HPP
 #define Y86_64_REGISTERS_HPP
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1200)
 #pragma once
 #endif  // defined(_MSC_VER) && (_MSC_VER >= 1200)
 
-#include "CC.hpp"
+#include "condition_codes.hpp"
 #include "headers.hpp"
 
-//* Y86Registers Tag
+//* Y86Registers value
+//* %rax  0    %r8   8
+//* %rcx  1    %r9   9
+//* %rdx  2    %r10  A
+//* %rbx  3    %r11  B
+//* %rsp  4    %r12  C
+//* %rbp  5    %r13  D
+//* %rsi  6    %r14  E
+//* %rdi  7          F
+//* Register ID 15 (0xF) indicates “no register”
+//* This will be used in the hardware design
 enum class Y86RFTag
 {
     // clang-format off
-    RAX,    RBX,    RCX,    RDX,
-    RSP,    RBP,    RDI,    RSI,
+    RAX,    RCX,    RDX,    RBX,
+    RSP,    RBP,    RSI,    RDI,
     R8 ,    R9 ,    R10,    R11,
-    R12,    R13,    R14
+    R12,    R13,    R14,    F
     // clang-format on
 };
 
@@ -29,26 +39,23 @@ struct Y86Registers {
     constexpr Y86Registers& operator=(Y86Registers&&)      = delete;
     // clang-format on
 
-    static Y86Registers& execute()
-    {
-        static std::unique_ptr<Y86Registers> registers{new Y86Registers()};
-        return *registers;
-    }
+    static constexpr std::size_t tag2index(RFTag rf_tag);
+    static constexpr RFTag index2tag(std::size_t index);
 
-    [[nodiscard]] const uint64_t& get(const RFTag& rf_tag) const noexcept(false);
-    uint64_t& get(const RFTag& rf_tag) noexcept(false);
-    void set(const RFTag& rf_tag, uint64_t value);
-    void clear(const RFTag& rf_tag);
-    void clear();
-    void show() const;
+    static uint64_t read(RFTag rf_tag);
+    static void write(RFTag rf_tag, uint64_t value);
+
+    static void clear();
+    static void clear(RFTag rf_tag);
+    static void show();
 
 protected:
     constexpr Y86Registers() = default;
 
 private:
-    std::array<uint64_t, 15> m_regs;
+    static std::array<uint64_t, 16> m_regs;
 };
 
-#include "impl/Registers.ipp"
+#include "impl/registers.ipp"
 
 #endif  //Y86_64_REGISTERS_HPP

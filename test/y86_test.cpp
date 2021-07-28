@@ -1,4 +1,6 @@
-//
-// Created by Senbon on 2021/7/26.
-//
+#include <y86.hpp>
 
+int main()
+{
+    return 0;
+}

@@ -28,33 +28,33 @@
 #define CPP_HPP
 
 #if defined(__clang__) || defined(__GNUC__)
-    #define CPP_STANDARD __cplusplus
+#define CPP_STANDARD __cplusplus
 #elif defined(_MSC_VER)
-    #define CPP_STANDARD _MSVC_LANG
+#define CPP_STANDARD _MSVC_LANG
 #endif
 
 #if CPP_STANDARD >= 199711L
-    #define HAS_CPP_03 1
+#define HAS_CPP_03 1
 #endif
 
 #if CPP_STANDARD >= 201103L
-    #define HAS_CPP_11 1
+#define HAS_CPP_11 1
 #endif
 
 #if CPP_STANDARD >= 201402L
-    #define HAS_CPP_14 1
+#define HAS_CPP_14 1
 #endif
 
 #if CPP_STANDARD >= 201703L
-    #define HAS_CPP_17 1
+#define HAS_CPP_17 1
 #endif
 
 #endif
 
 #ifdef DEBUG
-    #define DP_FINAL
+#define DP_FINAL
 #else
-    #define DP_FINAL final
+#define DP_FINAL final
 #endif
 
 // If the function can be executing return true, otherwise return false
@@ -69,6 +69,11 @@ bool function_execute_test(Func&& func, ArgsType&&... args)
         std::cerr << e.what() << '\n';
         return false;
     }
+}
+
+std::size_t operator"" _sz(std::size_t x)
+{
+    return x;
 }
 
 #endif  //Y86_64_HEADERS_HPP
