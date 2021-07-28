@@ -7,16 +7,13 @@
 
 #include "headers.hpp"
 
-//* Condition Codes value
-
-
-
-struct Y86ConditionCodes {
+//* Condition Codes
+struct Y86CC {
     // clang-format off
-    constexpr Y86ConditionCodes(const Y86ConditionCodes&)            = delete;
-    constexpr Y86ConditionCodes(Y86ConditionCodes&&)                 = delete;
-    constexpr Y86ConditionCodes& operator=(const Y86ConditionCodes&) = delete;
-    constexpr Y86ConditionCodes& operator=(Y86ConditionCodes&&)      = delete;
+    constexpr Y86CC(const Y86CC&)            = delete;
+    constexpr Y86CC(Y86CC&&)                 = delete;
+    constexpr Y86CC& operator=(const Y86CC&) = delete;
+    constexpr Y86CC& operator=(Y86CC&&)      = delete;
     // clang-format on
 
     static bool ZF, SF, OF;
@@ -25,7 +22,7 @@ struct Y86ConditionCodes {
     static void show();
 
 protected:
-    constexpr Y86ConditionCodes() = default;
+    constexpr Y86CC() = default;
 };
 
 #include "impl/condition_codes.ipp"

@@ -5,14 +5,14 @@ int main()
     Y86Registers<>::write(Y86RFTag::RAX, 100);
     Y86Registers<>::show();
 
-    Y86ConditionCodes::show();
-    Y86ConditionCodes::ZF = true;
-    Y86ConditionCodes::OF = true;
-    Y86ConditionCodes::show();
+    Y86CC::show();
+    Y86CC::ZF = true;
+    Y86CC::OF = true;
+    Y86CC::show();
 
-    Y86ConditionCodes::ZF = false;
-    Y86ConditionCodes::SF = true;
-    Y86ConditionCodes::show();
-    Y86ConditionCodes::clear();
-    Y86ConditionCodes::show();
+    Y86CC::ZF = false;
+    Y86CC::SF = true;
+    Y86CC::show();
+    Y86CC::clear();
+    Y86CC::show();
 }

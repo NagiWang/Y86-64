@@ -74,9 +74,7 @@ std::vector<uint8_t> Y86DMemory<DMemorySize, StatusType>::read_seq(std::size_t a
         return {};
     }
 
-    std::vector<uint8_t> result(m_dmem.begin() + address, m_dmem.begin() + count);
-
-    return result;
+    return std::vector<uint8_t>(m_dmem.begin() + address, m_dmem.begin() + count);
 }
 
 template <std::size_t DMemorySize, typename StatusType>
@@ -93,7 +91,7 @@ template <uint64_t DMemorySize, typename StatusType>
 void Y86DMemory<DMemorySize, StatusType>::show(std::size_t address, std::size_t count)
 {
     if (address >= DMemSize) return;
-    if (address + count >= DMemSize) count = DMemSize - address ;
+    if (address + count >= DMemSize) count = DMemSize - address;
 
     std::cout << std::format("Memory in (0x{:08x}, 0x{:08x})\n", address, address + count);
 

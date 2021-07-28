@@ -10,8 +10,9 @@
 #include "program_counter.hpp"
 #include "registers.hpp"
 
+//* Sequential Y86-64 Implementation
 template <typename RegistersType      = Y86Registers<>,
-          typename ConditionCodesType = Y86ConditionCodes,
+          typename ConditionCodesType = Y86CC,
           typename StatusType         = Y86Status<>,
           typename PCType             = Y86PC,
           typename DMemoryType        = Y86DMemory<>>

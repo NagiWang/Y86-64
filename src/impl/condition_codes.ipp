@@ -7,28 +7,28 @@
 
 #include "../condition_codes.hpp"
 
-//***************************** Y86ConditionCodes ********************************
+//***************************** Y86CC ********************************
 
 // clang-format off
-bool Y86ConditionCodes::ZF = false;
-bool Y86ConditionCodes::SF = false;
-bool Y86ConditionCodes::OF = false;
+bool Y86CC::ZF = false;
+bool Y86CC::SF = false;
+bool Y86CC::OF = false;
 // clang-format on
 
-void Y86ConditionCodes::clear()
+void Y86CC::clear()
 {
-    Y86ConditionCodes::ZF = false;
-    Y86ConditionCodes::SF = false;
-    Y86ConditionCodes::OF = false;
+    Y86CC::ZF = false;
+    Y86CC::SF = false;
+    Y86CC::OF = false;
 }
 
-void Y86ConditionCodes::show()
+void Y86CC::show()
 {
     std::cout << "Condition Code:\n"
               << std::format("ZF {:01b}\tSF {:01b}\tOF {:01b}\n\n",
-                             Y86ConditionCodes::ZF,
-                             Y86ConditionCodes::SF,
-                             Y86ConditionCodes::OF);
+                             Y86CC::ZF,
+                             Y86CC::SF,
+                             Y86CC::OF);
 }
 
 #endif  //Y86_64_CONDITION_CODES_IPP
