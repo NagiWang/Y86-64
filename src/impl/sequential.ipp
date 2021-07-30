@@ -5,7 +5,7 @@
 #pragma once
 #endif  // defined(_MSC_VER) && (_MSC_VER >= 1200)
 
-#include "../seq.hpp"
+#include "../sequential.hpp"
 
 // clang-format off
 template <> Y86SEQ<>::RFTag Y86SEQ<>::rA = Y86SEQ<>::RFTag::F;
