@@ -78,7 +78,7 @@ std::vector<uint8_t> Y86DMemory<DMemorySize, StatusType>::read_seq(std::size_t a
 }
 
 template <std::size_t DMemorySize, typename StatusType>
-void Y86DMemory<DMemorySize, StatusType>::write_seq(size_t address, std::vector<uint8_t> values)
+void Y86DMemory<DMemorySize, StatusType>::write_seq(size_t address, const std::vector<uint8_t>& values)
 {
     if (address >= DMemSize || address + values.size() >= DMemSize) {
         Status::value = StatusTag::ADR;

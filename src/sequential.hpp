@@ -1,5 +1,5 @@
-#ifndef Y86_64_SEQ_HPP
-#define Y86_64_SEQ_HPP
+#ifndef Y86_64_SEQUENTIAL_HPP
+#define Y86_64_SEQUENTIAL_HPP
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1200)
 #pragma once
@@ -11,17 +11,17 @@
 #include "registers.hpp"
 
 //* Sequential Y86-64 Implementation
-template <typename RegistersType      = Y86Registers<>,
+template <typename RegistersType      = Y86Registers,
           typename ConditionCodesType = Y86CC,
-          typename StatusType         = Y86Status<>,
+          typename StatusType         = Y86Status,
           typename PCType             = Y86PC,
           typename DMemoryType        = Y86DMemory<>>
 struct Y86SEQ {
     using Registers = RegistersType;
-    using RFTag     = typename RegistersType::RFTag;
+    using RFTag     = typename RegistersType::Tag;
     using CC        = ConditionCodesType;
     using Status    = StatusType;
-    using StatusTag = typename StatusType::StatusTag;
+    using StatusTag = typename StatusType::Tag;
     using PC        = PCType;
     using DMemory   = DMemoryType;
     // clang-format off
@@ -52,6 +52,6 @@ private:
     constexpr Y86SEQ() = default;
 };
 
-#include "impl/seq.ipp"
+#include "impl/sequential.ipp"
 
-#endif  //Y86_64_SEQ_HPP
+#endif  //Y86_64_SEQUENTIAL_HPP

@@ -118,7 +118,8 @@ void Y86Runner<SEQType>::stepi(bool debug)
             SEQ::valP = SEQ::PC::value + 2;
             POPQ::execute();
             break;
-        default: SEQ::Status::value = SEQ::StatusTag::INS;
+        default:
+            SEQ::Status::value = SEQ::StatusTag::INS;
     }
     // clang-format on
 }

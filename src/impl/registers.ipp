@@ -9,87 +9,79 @@
 
 //***************************** Y86Registers ********************************
 
-template <typename RFTagType>
-std::array<uint64_t, 16> Y86Registers<RFTagType>::m_regs{};
+std::array<uint64_t, 16> Y86Registers::m_regs{};
 
-template <typename RFTagType>
-constexpr std::size_t Y86Registers<RFTagType>::tag2index(RFTag rf_tag)
+constexpr std::size_t Y86Registers::tag2index(Tag rf_tag)
 {
     // clang-format off
     switch (rf_tag) {
-        case RFTag::RAX: return  0;
-        case RFTag::RCX: return  1;
-        case RFTag::RDX: return  2;
-        case RFTag::RBX: return  3;
-        case RFTag::RSP: return  4;
-        case RFTag::RBP: return  5;
-        case RFTag::RSI: return  6;
-        case RFTag::RDI: return  7;
-        case RFTag::R8 : return  8;
-        case RFTag::R9 : return  9;
-        case RFTag::R10: return 10;
-        case RFTag::R11: return 11;
-        case RFTag::R12: return 12;
-        case RFTag::R13: return 13;
-        case RFTag::R14: return 14;
-        case RFTag::F  : [[fallthrough]];
+        case Tag::RAX: return  0;
+        case Tag::RCX: return  1;
+        case Tag::RDX: return  2;
+        case Tag::RBX: return  3;
+        case Tag::RSP: return  4;
+        case Tag::RBP: return  5;
+        case Tag::RSI: return  6;
+        case Tag::RDI: return  7;
+        case Tag::R8 : return  8;
+        case Tag::R9 : return  9;
+        case Tag::R10: return 10;
+        case Tag::R11: return 11;
+        case Tag::R12: return 12;
+        case Tag::R13: return 13;
+        case Tag::R14: return 14;
+        case Tag::F  : [[fallthrough]];
         default:         return 15;
     }
     // clang-format on
 }
 
-template <typename RFTagType>
-constexpr typename Y86Registers<RFTagType>::RFTag Y86Registers<RFTagType>::index2tag(std::size_t index)
+constexpr typename Y86Registers::Tag Y86Registers::index2tag(std::size_t index)
 {
     // clang-format off
     switch (index) {
-        case  0: return RFTag::RAX;
-        case  1: return RFTag::RCX;
-        case  2: return RFTag::RDX;
-        case  3: return RFTag::RBX;
-        case  4: return RFTag::RSP;
-        case  5: return RFTag::RBP;
-        case  6: return RFTag::RSI;
-        case  7: return RFTag::RDI;
-        case  8: return RFTag::R8;
-        case  9: return RFTag::R9;
-        case 10: return RFTag::R10;
-        case 11: return RFTag::R11;
-        case 12: return RFTag::R12;
-        case 13: return RFTag::R13;
-        case 14: return RFTag::R14;
+        case  0: return Tag::RAX;
+        case  1: return Tag::RCX;
+        case  2: return Tag::RDX;
+        case  3: return Tag::RBX;
+        case  4: return Tag::RSP;
+        case  5: return Tag::RBP;
+        case  6: return Tag::RSI;
+        case  7: return Tag::RDI;
+        case  8: return Tag::R8;
+        case  9: return Tag::R9;
+        case 10: return Tag::R10;
+        case 11: return Tag::R11;
+        case 12: return Tag::R12;
+        case 13: return Tag::R13;
+        case 14: return Tag::R14;
         case 15: [[fallthrough]];
-        default: return RFTag::F;
+        default: return Tag::F;
     }
     // clang-format on
 }
 
-template <typename RFTagType>
-uint64_t Y86Registers<RFTagType>::read(RFTag rf_tag)
+uint64_t Y86Registers::read(Tag rf_tag)
 {
     return m_regs[tag2index(rf_tag)];
 }
 
-template <typename RFTagType>
-void Y86Registers<RFTagType>::write(RFTag rf_tag, uint64_t value)
+void Y86Registers::write(Tag rf_tag, uint64_t value)
 {
     m_regs[tag2index(rf_tag)] = value;
 }
 
-template <typename RFTagType>
-void Y86Registers<RFTagType>::Y86Registers::clear()
+void Y86Registers::Y86Registers::clear()
 {
     m_regs.fill(0);
 }
 
-template <typename RFTagType>
-void Y86Registers<RFTagType>::clear(RFTag rf_tag)
+void Y86Registers::clear(Tag rf_tag)
 {
     m_regs[tag2index(rf_tag)] = 0;
 }
 
-template <typename RFTagType>
-void Y86Registers<RFTagType>::show()
+void Y86Registers::show()
 {
     // clang-format on
     std::cout << "Y86Registers:\n"

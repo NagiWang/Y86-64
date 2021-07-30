@@ -10,11 +10,11 @@
 #include "status.hpp"
 
 template <std::size_t DMemorySize = 0x10000,
-          typename StatusType     = Y86Status<>>
+          typename StatusType     = Y86Status>
 struct Y86DMemory {
     static constexpr std::size_t DMemSize = DMemorySize;
     using Status                          = StatusType;
-    using StatusTag                       = typename StatusType::StatusTag;
+    using StatusTag                       = typename StatusType::Tag;
     // clang-format off
     constexpr Y86DMemory(const Y86DMemory&)            = delete;
     constexpr Y86DMemory(Y86DMemory&&)                 = delete;
@@ -27,7 +27,7 @@ struct Y86DMemory {
     static uint8_t readb(std::size_t address);
     static void writeb(size_t address, uint8_t value);
     static std::vector<uint8_t> read_seq(std::size_t address, std::size_t count);
-    static void write_seq(size_t address, std::vector<uint8_t> values);
+    static void write_seq(size_t address, const std::vector<uint8_t>& values);
 
     static void show(std::size_t address = 0, std::size_t count = DMemSize);
 

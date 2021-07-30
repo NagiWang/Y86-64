@@ -5,7 +5,7 @@
 #pragma once
 #endif  // defined(_MSC_VER) && (_MSC_VER >= 1200)
 
-#include "seq.hpp"
+#include "sequential.hpp"
 #include "y86.hpp"
 
 template <typename SEQType = Y86SEQ<>>

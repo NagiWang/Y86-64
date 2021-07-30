@@ -2,8 +2,8 @@
 
 int main()
 {
-    Y86Registers<>::write(Y86RFTag::RAX, 100);
-    Y86Registers<>::show();
+    Y86Registers::write(Y86Registers::Tag::RAX, 100);
+    Y86Registers::show();
 
     Y86CC::show();
     Y86CC::ZF = true;

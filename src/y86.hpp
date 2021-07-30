@@ -7,7 +7,7 @@
 
 #include "headers.hpp"
 
-#include "seq.hpp"
+#include "sequential.hpp"
 
 template <typename SEQType = Y86SEQ<>>
 struct InstructionBase {

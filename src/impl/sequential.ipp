@@ -1,5 +1,5 @@
-#ifndef Y86_64_SEQ_IPP
-#define Y86_64_SEQ_IPP
+#ifndef Y86_64_SEQUENTIAL_IPP
+#define Y86_64_SEQUENTIAL_IPP
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1200)
 #pragma once
@@ -51,4 +51,4 @@ uint64_t Y86SEQ<RegistersType, ConditionCodesType, StatusType, PCType, DMemoryTy
     return result;
 }
 
-#endif  //Y86_64_SEQ_IPP
+#endif  //Y86_64_SEQUENTIAL_IPP
