@@ -5,7 +5,7 @@
 #pragma once
 #endif  // defined(_MSC_VER) && (_MSC_VER >= 1200)
 
-#include "../seq_cc.hpp"
+#include "seq/seq_cc.hpp"
 
 //***************************** SeqY86CC ********************************
 

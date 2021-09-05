@@ -5,7 +5,7 @@
 #pragma once
 #endif  // defined(_MSC_VER) && (_MSC_VER >= 1200)
 
-#include "../seq_pc.hpp"
+#include "seq/seq_pc.hpp"
 
 void SeqY86PC::show()
 {

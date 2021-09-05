@@ -25,6 +25,6 @@ protected:
     constexpr SeqY86CC() = default;
 };
 
-#include "impl/seq_cc.ipp"
+#include "impl/seq/seq_cc.ipp"
 
 #endif  //Y86_64_SEQ_CC_HPP

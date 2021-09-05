@@ -26,6 +26,6 @@ protected:
     constexpr SeqY86Status() = default;
 };
 
-#include "impl/seq_status.ipp"
+#include "impl/seq/seq_status.ipp"
 
 #endif  //Y86_64_SEQ_STATUS_HPP

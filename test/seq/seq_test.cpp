@@ -1,4 +1,4 @@
-#include <seq.hpp>
+#include <seq/seq_runner.hpp>
 
 //* codes
 //*                                | # Execution begins at address 0
@@ -36,7 +36,7 @@
 //*                                | # Stack starts here and grows to lower addresses
 //* 0x0091:                        |     .pos 0x200
 //* 0x0200:                        | stack:
-std::vector<uint8_t> codes{
+std::vector<std::uint8_t> codes{
     // clang-format off
     0x30, 0xf4, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x80, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

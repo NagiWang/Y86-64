@@ -1,4 +1,6 @@
-//
-// Created by Senbon on 2021/8/5.
-//
+#include <asm.hpp>
 
+int main()
+{
+    return 0;
+}

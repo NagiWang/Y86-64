@@ -5,7 +5,7 @@
 #pragma once
 #endif  // defined(_MSC_VER) && (_MSC_VER >= 1200)
 
-#include "../seq_status.hpp"
+#include "seq/seq_status.hpp"
 
 SeqY86Status::Tag SeqY86Status::value = SeqY86Status::Tag::AOK;
 

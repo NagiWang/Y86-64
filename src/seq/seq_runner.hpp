@@ -5,8 +5,9 @@
 #pragma once
 #endif  // defined(_MSC_VER) && (_MSC_VER >= 1200)
 
-#include "dmemory.hpp"
+
 #include "seq_cc.hpp"
+#include "seq_dmem.hpp"
 #include "seq_pc.hpp"
 #include "seq_reg.hpp"
 
@@ -186,6 +187,6 @@ struct POPQ : public SeqInsBase<> {
     static void execute();
 };
 
-#include "impl/seq.ipp"
+#include "impl/seq/seq_runner.ipp"
 
 #endif  //Y86_64_SEQ_HPP

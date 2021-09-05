@@ -5,14 +5,14 @@
 #pragma once
 #endif  // defined(_MSC_VER) && (_MSC_VER >= 1200)
 
-#include "../seq_reg.hpp"
+#include "seq/seq_reg.hpp"
 
 //***************************** SeqY86Registers ********************************
 
 std::array<uint64_t, 16> SeqY86Registers::m_regs{};
 
 // clang-format off
-const std::unordered_map<std::string, std::uint8_t> SeqY86Registers::m_tagmap{
+std::unordered_map<std::string, std::uint8_t> SeqY86Registers::m_tagmap{
     {"%rax", 0x00},
     {"%rcx", 0x01},
     {"%rdx", 0x02},
@@ -56,10 +56,10 @@ constexpr std::size_t SeqY86Registers::tag2index(Tag rf_tag)
     // clang-format on
 }
 
-std::uint8_t SeqY86Registers::tag2code(const std::string& rf_tag)
+std::uint8_t SeqY86Registers::tag2code(std::string_view rf_tag)
 {
-    if (m_tagmap.find(rf_tag) != m_tagmap.end())
-        return m_tagmap[rf_tag];
+    if (m_tagmap.find(rf_tag.data()) != m_tagmap.end())
+        return m_tagmap[rf_tag.data()];
     else
         return 0xff;
 }

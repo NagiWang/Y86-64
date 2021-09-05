@@ -1,5 +1,5 @@
-#ifndef Y86_64_DMEMORY_HPP
-#define Y86_64_DMEMORY_HPP
+#ifndef Y86_64_SEQ_DMEM_HPP
+#define Y86_64_SEQ_DMEM_HPP
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1200)
 #pragma once
@@ -38,6 +38,6 @@ private:
     static std::array<uint8_t, DMemSize> m_dmem;
 };
 
-#include "impl/dmemory.ipp"
+#include "impl/seq/seq_dmem.ipp"
 
-#endif  //Y86_64_DMEMORY_HPP
+#endif  //Y86_64_SEQ_DMEM_HPP

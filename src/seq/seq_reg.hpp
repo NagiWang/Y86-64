@@ -38,7 +38,7 @@ struct SeqY86Registers {
     };
 
     static constexpr std::size_t tag2index(Tag rf_tag);
-    static std::uint8_t tag2code(const std::string& rf_tag);
+    static std::uint8_t tag2code(std::string_view rf_tag);
     static constexpr Tag index2tag(std::size_t index);
 
     static uint64_t read(Tag rf_tag);
@@ -53,9 +53,9 @@ protected:
 
 private:
     static std::array<uint64_t, 16> m_regs;
-    static const std::unordered_map<std::string, std::uint8_t> m_tagmap;
+    static std::unordered_map<std::string, std::uint8_t> m_tagmap;
 };
 
-#include "impl/seq_reg.ipp"
+#include "impl/seq/seq_reg.ipp"
 
 #endif  //Y86_64_SEQ_REG_HPP

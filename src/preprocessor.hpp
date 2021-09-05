@@ -66,13 +66,12 @@ std::string strip(std::string_view s)
 std::vector<std::string> readlines(const std::string& filename)
 {
     std::ifstream ifs{filename};
+    std::vector<std::string> lines;
 
-    std::vector<std::string> strings;
+    for (std::string line; std::getline(ifs, line, '\n');)
+        lines.push_back(line);
 
-    for (std::string str; std::getline(std::cin, str, ';');)
-        strings.push_back(str);
-
-    return strings
+    return lines
          | views::transform(string_to_lower)
          | views::transform(remove_inline_comment)
          | views::transform(replace_blanks)

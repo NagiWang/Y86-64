@@ -1,4 +1,4 @@
-#include <seq.hpp>
+#include <seq/seq_pc.hpp>
 
 int main()
 {
