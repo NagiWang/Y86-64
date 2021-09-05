@@ -1,0 +1,76 @@
+#include <seq.hpp>
+
+//* codes
+//*                                | # Execution begins at address 0
+//* 0x0000:                        |     .pos 0
+//* 0x0000: 30f40002000000000000   |     irmovq stack, %rsp      # Set up stack pointer
+//* 0x000a: 803800000000000000     |     call main       # Execute main program
+//* 0x0013: 00                     |     halt            # Terminate program
+//*                                |
+//*                                | # Array of 4 elements
+//* 0x0014:                        |     .align 8
+//* 0x0018: 0d000d000d             | array:  .quad 0x000d000d000d
+//* 0x0020: c000c000c0             |     .quad 0x00c000c000c0
+//* 0x0028: 000b000b000b           |     .quad 0x0b000b000b00
+//* 0x0030: 00a000a000a0           |     .quad 0xa000a000a000
+//*                                |
+//* 0x0038: 30f71800000000000000   | main:   irmovq array,%rdi
+//* 0x0042: 30f60400000000000000   |     irmovq $4,%rsi
+//* 0x004c: 805600000000000000     |     call sum        # sum(array, 4)
+//* 0x0055: 90                     |     ret
+//*                                |
+//*                                | # long sum(long *start, long count)
+//*                                | # start in %rdi, count in %rsi
+//* 0x0056: 30f80800000000000000   | sum:    irmovq $8,%r8        # Constant 8
+//* 0x0060: 30f90100000000000000   |     irmovq $1,%r9        # Constant 1
+//* 0x006a: 6300                   |     xorq %rax,%rax       # sum = 0
+//* 0x006c: 6266                   |     andq %rsi,%rsi       # Set CC
+//* 0x006e: 708700000000000000     |     jmp     test         # Goto test
+//* 0x0077: 50a70000000000000000   | loop:   mrmovq (%rdi),%r10   # Get *start
+//* 0x0081: 60a0                   |     addq %r10,%rax       # Add to sum
+//* 0x0083: 6087                   |     addq %r8,%rdi        # start++
+//* 0x0085: 6196                   |     subq %r9,%rsi        # count--.  Set CC
+//* 0x0087: 747700000000000000     | test:   jne    loop          # Stop when 0
+//* 0x0090: 90                     |     ret                  # Return
+//*                                |
+//*                                | # Stack starts here and grows to lower addresses
+//* 0x0091:                        |     .pos 0x200
+//* 0x0200:                        | stack:
+std::vector<uint8_t> codes{
+    // clang-format off
+    0x30, 0xf4, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x80, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00,
+
+    0x00, 0x00, 0x00, 0x00,
+    0x0d, 0x00, 0x0d, 0x00, 0x0d, 0x00, 0x00, 0x00,
+    0xc0, 0x00, 0xc0, 0x00, 0xc0, 0x00, 0x00, 0x00,
+    0x00, 0x0b, 0x00, 0x0b, 0x00, 0x0b, 0x00, 0x00,
+    0x00, 0xa0, 0x00, 0xa0, 0x00, 0xa0, 0x00, 0x00,
+
+    0x30, 0xf7, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x30, 0xf6, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x80, 0x56, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x90,
+
+    0x30, 0xf8, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x30, 0xf9, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x63, 0x00,
+    0x62, 0x66,
+    0x70, 0x87, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x50, 0xa7, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x60, 0xa0,
+    0x60, 0x87,
+    0x61, 0x96,
+    0x74, 0x77, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x90
+    // clang-format on
+};
+
+int main()
+{
+    SeqY86Runner<>::SEQ::DMemory::write_seq(0, codes);
+    SeqY86Runner<>::execute(true);
+
+    return 0;
+}
