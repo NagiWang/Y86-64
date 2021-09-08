@@ -7,7 +7,7 @@
 
 #include "headers.hpp"
 
-#include "seq_reg.hpp"
+#include "seq/seq_reg.hpp"
 
 template <typename RegistersType = SeqY86Registers>
 struct Processor {
